@@ -1,17 +1,16 @@
 const hre = require('hardhat');
 const { breeds } = require('../helpers');
 
+const contractAddress = '';
+const contractName = '';
+
 async function main() {
-  const contractAddress = '';
-  const AdvancedCollectible = await hre.ethers.getContractFactory(
-    'AdvancedCollectible'
-  );
+  const Contract = await hre.ethers.getContractFactory(contractName);
+  const contract = Contract.attach(contractAddress);
 
-  const advancedCollectible = await AdvancedCollectible.attach(contractAddress);
-
-  const tokenCounter = await advancedCollectible.tokenCounter();
+  const tokenCounter = await contract.tokenCounter();
   console.log(`Found ${tokenCounter.toString()} NFT tokens`);
-  await setTokenURI(tokenCounter, advancedCollectible);
+  await setTokenURI(tokenCounter, contract);
 }
 
 async function setTokenURI(tokensCoount, contract) {

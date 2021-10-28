@@ -1,9 +1,9 @@
 const hre = require('hardhat');
 const { openseaTokenURI } = require('../helpers');
+const contractAddress = '';
+const tokenURI = '';
 
 async function main() {
-  const contractAddress = '';
-  const tokenURI = '';
   const Contract = await hre.ethers.getContractFactory('SimpleCollectible');
   const contract = Contract.attach(contractAddress);
   const tokenCounter = await advancedCollectible.tokenCounter();

@@ -6,20 +6,18 @@ let ipfs;
 const sampleMetadata = require('../../metadata/sample.json');
 const { breeds } = require('../helpers');
 
+const contractAddress = '';
+const contractName = '';
+
 async function main() {
-  const contractAddress = '0x5330EA0165437D6D7Cc54dC766C25B02990CB7cc';
   ipfs = await IPFS.create();
+  const Contract = await hre.ethers.getContractFactory(contractName);
+  const contract = Contract.attach(contractAddress);
 
-  const AdvancedCollectible = await hre.ethers.getContractFactory(
-    'AdvancedCollectible'
-  );
-
-  const advancedCollectible = await AdvancedCollectible.attach(contractAddress);
-
-  const tokenCounter = await advancedCollectible.tokenCounter();
+  const tokenCounter = await contract.tokenCounter();
   console.log(`Found ${tokenCounter.toString()} NFT tokens`);
 
-  await writeMenatada(tokenCounter, advancedCollectible);
+  await writeMenatada(tokenCounter, contract);
 }
 
 async function writeMenatada(tokensCoount, contract) {

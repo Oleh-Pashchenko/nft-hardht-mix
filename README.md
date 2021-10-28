@@ -66,6 +66,8 @@ In `hardhat.config.js` I setup `defaultNetwork` as 'bsctestnet', you could set u
 
 > Use `npx hardhat verify contractAddress` to verify your contracts.
 
+Before running scripts setup a `contractName` in scripts that you would like to work with. And after deploying the setup `contractAddress` in each of the scripts.
+
 # For the Simple ERC721
 
 ```
@@ -73,7 +75,7 @@ npx hardhat run scripts/simple/deploy.js
 npx hardhat run scripts/simple/createCollectible.js
 ```
 
-# For the Advanced ERC721
+# For the AdvancedCollectible ERC721
 
 ```
 npx hardhat run scripts/advanced/deploy.js
@@ -86,6 +88,12 @@ Then:
 npx hardhat run scripts/advanced/createMetadata.js
 npx hardhat run scripts/advanced/setTokenURI.js
 ```
+
+# For the AdvancedVRFCollectible ERC721
+
+The same with AdvancedCollectible but in the contract `AdvancedVRFCollectible.sol` you should setup the `VRF Coordinator`, `LINK Token`, `keyHash` and `fee`. These variables depend on the network you have chosen, you could get more details [here](https://docs.chain.link/docs/vrf-contracts/).
+
+And after that you should send someone [LINK](https://faucets.chain.link) tokens to your deployed contract before using `createCollectible`.
 
 # Hardhat Project
 
